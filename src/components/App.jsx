@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Searchbar } from './Searchbar/Searchbar';
-//import {ImageGallery} from './ImageGallery/ImageGallery';
+import {ImageGallery} from './ImageGallery/ImageGallery';
 //import {Button} from './Button/Button';
 //import {Loader from} './Loader/Loader';
 //import {Modal} from './Modal/Modal';
@@ -81,7 +81,8 @@ export class App extends Component {
 
   setStatus = status => this.setState({ status });
 
-  render() {
+    render() {
+       const { images } = this.state;
     return (
       <div
         style={{
@@ -92,6 +93,9 @@ export class App extends Component {
         }}
       >
         <Searchbar onSearch={this.handleSearchQuery} />
+        {images.length > 0 && (
+          <ImageGallery images={images} onClick={this.setActiveImageUrl} />
+        )}
         <ToastContainer theme="colored" autoClose={3000} />
       </div>
     );
