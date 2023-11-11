@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Searchbar } from './Searchbar/Searchbar';
 import {ImageGallery} from './ImageGallery/ImageGallery';
-//import {Button} from './Button/Button';
+import {Button} from './Button/Button';
 //import {Loader from} './Loader/Loader';
 //import {Modal} from './Modal/Modal';
 import { searchImages } from '../data/data';
@@ -82,7 +82,8 @@ export class App extends Component {
   setStatus = status => this.setState({ status });
 
     render() {
-       const { images } = this.state;
+        const { images } = this.state;
+       
     return (
       <div
         style={{
@@ -96,6 +97,7 @@ export class App extends Component {
         {images.length > 0 && (
           <ImageGallery images={images} onClick={this.setActiveImageUrl} />
         )}
+        <Button onClick={this.setNextPage}>Load More</Button>
         <ToastContainer theme="colored" autoClose={3000} />
       </div>
     );
