@@ -1,19 +1,19 @@
 import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { Searchbar } from './Searchbar/Searchbar';
-import {ImageGallery} from './ImageGallery/ImageGallery';
-import {Button} from './Button/Button';
-//import { Loader } from './Loader/Loader';
-//import {Modal} from './Modal/Modal';
-import { searchImages } from '../data/data';
 
- const STATUS = {
-   PENDING: 'PENDING',
-   FULFILLED: 'FULFILLED',
-   REJECTED: 'REJECTED',
-   IDLE: 'IDLE',
+import { Searchbar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Button } from './Button/Button';
+import { Loader } from './Loader/Loader';
+import { Modal } from './Modal/Modal';
+import { searchImages } from '../api/api';
+
+const STATUS = {
+  PENDING: 'PENDING',
+  FULFILLED: 'FULFILLED',
+  REJECTED: 'REJECTED',
+  IDLE: 'IDLE',
 };
- 
 export class App extends Component {
   state = {
     status: STATUS.IDLE,
@@ -24,7 +24,7 @@ export class App extends Component {
     totalPages: 1,
   };
 
-  componentDidUpdate( prevState) {
+  componentDidUpdate(_, prevState) {
     const { query: prevQuery, page: prevPage } = prevState;
     const { query, page } = this.state;
 
@@ -81,9 +81,11 @@ export class App extends Component {
 
   setStatus = status => this.setState({ status });
 
-    render() {
-        const { images } = this.state;
-       
+  render() {
+    const { status, images, activeImage, page, totalPages } = this.state;
+
+    const isVisibleButton = page < totalPages && status === STATUS.FULFILLED;
+
     return (
       <div
         style={{
@@ -94,10 +96,24 @@ export class App extends Component {
         }}
       >
         <Searchbar onSearch={this.handleSearchQuery} />
+
         {images.length > 0 && (
           <ImageGallery images={images} onClick={this.setActiveImageUrl} />
         )}
-        <Button onClick={this.setNextPage}>Load More</Button>
+
+        {activeImage && (
+          <Modal
+            url={activeImage}
+            onClose={() => this.setActiveImageUrl(null)}
+          />
+        )}
+
+        {isVisibleButton && (
+          <Button onClick={this.setNextPage}>Load More</Button>
+        )}
+
+        {status === STATUS.PENDING && <Loader />}
+
         <ToastContainer theme="colored" autoClose={3000} />
       </div>
     );

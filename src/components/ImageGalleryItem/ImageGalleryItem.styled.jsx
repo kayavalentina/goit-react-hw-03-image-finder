@@ -13,7 +13,7 @@ export const Image = styled.img`
   background-color: #eeeeee;
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  :hover {
+  &:hover {
     transform: scale(1.03);
     cursor: zoom-in;
   }
