@@ -13,4 +13,4 @@ export const Loader = () => {
       ariaLabel="rings-loading"
     />
   );
-}
+};

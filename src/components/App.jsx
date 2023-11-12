@@ -103,14 +103,13 @@ export class App extends Component {
           <Modal
             url={activeImage}
             onClose={() => this.setActiveImageUrl(null)}
-                />
-                
+          />
         )}
         {isVisibleButton && (
           <Button onClick={this.setNextPage}>Load More</Button>
         )}
         {status === STATUS.PENDING && <Loader />}
-        <ToastContainer theme="colored" autoClose={3000} /> 
+        <ToastContainer theme="colored" autoClose={3000} />
       </div>
     );
   }
