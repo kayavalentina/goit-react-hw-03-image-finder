@@ -96,25 +96,21 @@ export class App extends Component {
         }}
       >
         <Searchbar onSearch={this.handleSearchQuery} />
-
         {images.length > 0 && (
           <ImageGallery images={images} onClick={this.setActiveImageUrl} />
         )}
-
         {activeImage && (
           <Modal
             url={activeImage}
             onClose={() => this.setActiveImageUrl(null)}
-          />
+                />
+                
         )}
-
         {isVisibleButton && (
           <Button onClick={this.setNextPage}>Load More</Button>
         )}
-
         {status === STATUS.PENDING && <Loader />}
-
-        <ToastContainer theme="colored" autoClose={3000} />
+        <ToastContainer theme="colored" autoClose={3000} /> 
       </div>
     );
   }

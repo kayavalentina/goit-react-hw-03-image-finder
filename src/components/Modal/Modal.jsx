@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons';
 import { MdClose } from 'react-icons/md';
 import { Overlay, Wrapper, Image, CloseButton } from './Modal.styled';
 
-const ModalRoot = document.querySelector('#modal-root');
+const ModalRoot = document.querySelector('#root');
 
 export class Modal extends Component {
   static propTypes = {

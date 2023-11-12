@@ -45,10 +45,9 @@ export class Searchbar extends Component {
           <SearchFormButton type="submit">
             <SearchFormButtonLabel>Search</SearchFormButtonLabel>
           </SearchFormButton>
-
           <SearchFormInput
             type="text"
-            autocomplete="off"
+            autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
             name="query"
